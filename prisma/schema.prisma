@@ -1,0 +1,66 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id String @id @default(uuid())
+  name String?
+  email String @unique
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  platformAccounts UserPlatformAccount[]    // Relation: One user can have multiple connected platform accounts
+}
+
+model Platform {
+  id String @id @default(uuid())
+  name String     // e.g., "leetcode", "codeforces", "codechef"
+  displayName String?
+  apiUrl String?    // Base API URL if needed
+  platformAccounts UserPlatformAccount[]    // Relation: One platform can be linked to many user accounts.
+}
+
+model UserPlatformAccount {
+  id          String   @id @default(cuid())
+  userId      String
+  platformId  String
+  handle      String   // Username or handle on the platform
+  lastSync    DateTime?  // Last time data was fetched
+
+  // Cached current stats
+  currentRating       Int?
+  totalProblemsSolved Int?
+  currentStreak       Int?
+
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  // Relations
+  user     User     @relation(fields: [userId], references: [id])
+  platform Platform @relation(fields: [platformId], references: [id])
+  stats    UserStats[]
+  
+  @@unique([userId, platformId])  // One account per platform per user
+}
+
+model UserStats {
+  id                    String   @id @default(cuid())
+  accountId           String   // Reference to UserPlatformAccount
+  date                DateTime // The snapshot date (could be daily)
+  rating              Int?
+  problemsSolved      Int?
+  streak              Int?
+
+  createdAt           DateTime @default(now())
+
+  // Relations
+  account UserPlatformAccount @relation(fields: [accountId], references: [id])
+
+  @@unique([accountId, date])
+}
