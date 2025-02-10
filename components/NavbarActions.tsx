@@ -2,9 +2,11 @@
 
 import React from 'react'
 
-import LogoutButton from './LogoutButton'
-import { useSession } from 'next-auth/react'
+// import LogoutButton from './LogoutButton'
+import { signOut, useSession } from 'next-auth/react'
 import { ModeToggle } from './ModeToggle'
+import Image from 'next/image'
+import { Button } from './ui/button'
 
 const NavbarActions = () => {
   const { data: session } = useSession();
@@ -12,7 +14,24 @@ const NavbarActions = () => {
   return (
     <div className='ml-auto flex items-center gap-x-4'>
         <ModeToggle />
-        {session ? <LogoutButton /> : null}
+        {session ? 
+          <Button 
+            variant="outline" 
+            onClick={() => signOut({ callbackUrl: "/" })}
+          >
+            Log out
+          </Button> 
+          : 
+          null}
+        {session && (
+          <Image
+            src={`${session.user?.image!}`}
+            alt={session.user.name as string}
+            width={40}
+            height={40}
+            className='rounded-full'
+          />
+        )}
     </div>
   )
 }

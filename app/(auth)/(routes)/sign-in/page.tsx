@@ -48,14 +48,14 @@ export default function SignInPage() {
             <div className="flex sm:flex-row flex-col justify-between gap-2 my-4">
                 <Button
                     variant="outline" 
-                    className="bg-foreground text-white px-4 py-2 rounded-md"
+                    className="dark:bg-gray-800 px-4 py-2 rounded-md"
                     onClick={handleGoogleSignIn}
                 >
                     Sign in with Google
                 </Button>
                 <Button
-                    variant="ghost" 
-                    className="bg-foreground text-white px-4 py-2 rounded-md"
+                    variant="outline" 
+                    className="dark:bg-gray-800 px-4 py-2 rounded-md"
                     onClick={handleGithubSignIn}
                 >
                     Sign in with Github
@@ -69,7 +69,7 @@ export default function SignInPage() {
                 </div>
                 <Button
                     variant="outline" 
-                    className="bg-foreground text-white px-4 py-2 rounded-md mt-4"
+                    className="bg-foreground text-white dark:bg-gray-800 px-4 py-2 rounded-md mt-4"
                     onClick={() => router.push("/")}
                 >
                     Sign in

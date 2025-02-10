@@ -35,25 +35,25 @@ export default function SignUpPage() {
     <div className="min-h-screen flex items-center justify-center">
       <Card>
         <CardHeader>
-            <CardTitle>
+            <CardTitle className="font-bold text-center">
                 Sign up to CP Tracker
             </CardTitle>
             <CardDescription>
-                Welcome back! Please sign in to continue
+              Welcome! Please fill in the details to get started.
             </CardDescription>
         </CardHeader>
         <CardContent className="">
             <div className="flex sm:flex-row flex-col justify-between gap-2 my-4">
                 <Button
                     variant="outline" 
-                    className="bg-foreground text-white px-4 py-2 rounded-md"
+                    className="dark:bg-gray-800 px-4 py-2 rounded-md"
                     onClick={handleGoogleSignUp}
                 >
                     Sign up with Google
                 </Button>
                 <Button
-                    variant="ghost" 
-                    className="bg-foreground text-white px-4 py-2 rounded-md"
+                    variant="outline" 
+                    className="dark:bg-gray-800 px-4 py-2 rounded-md"
                     onClick={handleGithubSignUp}
                 >
                     Sign up with Github
@@ -67,7 +67,7 @@ export default function SignUpPage() {
                 </div>
                 <Button
                     variant="outline" 
-                    className="bg-foreground text-white px-4 py-2 rounded-md mt-4"
+                    className="bg-foreground text-white dark:bg-gray-800 px-4 py-2 rounded-md mt-4"
                     onClick={() => router.push("/")}
                 >
                     Sign up

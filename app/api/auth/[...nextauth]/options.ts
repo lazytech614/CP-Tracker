@@ -18,6 +18,23 @@ export const authOptions: NextAuthOptions = {
       })
   ],
   callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id.toString();
+        token.email = user.email;
+      }
+      try {
+        JSON.stringify(token);
+      } catch (err) {
+        console.error("Token serialization error:", err);
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      session.user.id = token.id as string;
+      session.user.email = token.email;
+      return session;
+    },
     async signIn({ account, profile }) {
       if (!profile?.email) {
         throw new Error("Email is required");
