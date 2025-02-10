@@ -9,20 +9,19 @@ datasource db {
 }
 
 model User {
-  id String @id @default(uuid())
-  name String?
-  email String @unique
-  password String
+  id        String @id @default(uuid())
+  name      String?
+  email     String @unique
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   platformAccounts UserPlatformAccount[]    // Relation: One user can have multiple connected platform accounts
 }
 
 model Platform {
-  id String @id @default(uuid())
-  name String     // e.g., "leetcode", "codeforces", "codechef"
-  displayName String?
-  apiUrl String?    // Base API URL if needed
+  id               String @id @default(uuid())
+  name             String     // e.g., "leetcode", "codeforces", "codechef"
+  displayName      String?
+  apiUrl           String?    // Base API URL if needed
   platformAccounts UserPlatformAccount[]    // Relation: One platform can be linked to many user accounts.
 }
 
@@ -50,7 +49,7 @@ model UserPlatformAccount {
 }
 
 model UserStats {
-  id                    String   @id @default(cuid())
+  id                  String   @id @default(cuid())
   accountId           String   // Reference to UserPlatformAccount
   date                DateTime // The snapshot date (could be daily)
   rating              Int?
