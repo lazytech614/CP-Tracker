@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import { Button } from "@/components/ui/button";
 import { 
     Card, 
@@ -15,6 +17,17 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
+
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   const router = useRouter();
 
   const handleGoogleSignUp = async () => {

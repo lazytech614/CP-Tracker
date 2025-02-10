@@ -11,6 +11,7 @@ interface Contest {
   description: string;
 }
 
+// Dummy contest data for each contest status
 const dummyPastContests: Contest[] = [
   { id: "1", title: "Past Contest 1", date: "2023-08-15", description: "Description for past contest 1" },
   { id: "2", title: "Past Contest 2", date: "2023-08-20", description: "Description for past contest 2" },
@@ -29,9 +30,11 @@ const dummyUpcomingContests: Contest[] = [
 ];
 
 export default function ContestListPage() {
+  // Extract dynamic route parameters using useParams()
   const params = useParams();
   const contestStatus = Array.isArray(params.status) ? params.status[0] : params.status || "";
 
+  // Select dummy contests based on the status
   let contestsToShow: Contest[] = [];
   if (contestStatus === "past") {
     contestsToShow = dummyPastContests;
