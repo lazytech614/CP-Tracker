@@ -19,7 +19,7 @@ model User {
 
 model Platform {
   id               String @id @default(uuid())
-  name             String     // e.g., "leetcode", "codeforces", "codechef"
+  name             String @unique    // e.g., "leetcode", "codeforces", "codechef"
   displayName      String?
   apiUrl           String?    // Base API URL if needed
   platformAccounts UserPlatformAccount[]    // Relation: One platform can be linked to many user accounts.

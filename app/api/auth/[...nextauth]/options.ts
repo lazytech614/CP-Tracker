@@ -19,14 +19,29 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
+      // if (user) {
+      //   token.id = user.id.toString();
+      //   token.email = user.email;
+      // }
+      // try {
+      //   JSON.stringify(token);
+      // } catch (err) {
+      //   console.error("Token serialization error:", err);
+      // }
+      // return token;
+
+      // If a user is returned from signIn, override token.id with the database user id.
       if (user) {
-        token.id = user.id.toString();
+        // Retrieve the database user using the email
+        const dbUser = await prismadb.user.findUnique({
+          where: { email: user.email as string },
+        });
+        if (dbUser) {
+          token.id = dbUser.id; // This will be the UUID from your DB
+        } else {
+          token.id = user.id?.toString(); // Fallback if not found, though this shouldn't happen
+        }
         token.email = user.email;
-      }
-      try {
-        JSON.stringify(token);
-      } catch (err) {
-        console.error("Token serialization error:", err);
       }
       return token;
     },
