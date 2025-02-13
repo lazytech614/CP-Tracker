@@ -11,7 +11,7 @@ interface ContestItemProps {
   borderColor: string;
 }
 
-export default function ContestItem({ contest, bgColor, borderColor }: ContestItemProps) {
+export default function ContestItem({ contest, borderColor }: ContestItemProps) {
   return (
     <div className={`p-4 border ${borderColor} rounded-lg shadow-sm`}>
       <h2 className="text-2xl font-bold">{contest.title}</h2>

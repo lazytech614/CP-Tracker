@@ -17,6 +17,7 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function SignUpPage() {
+  const router = useRouter();
 
   const [isMounted, setIsMounted] = useState(false);
 
@@ -28,7 +29,6 @@ export default function SignUpPage() {
     return null;
   }
 
-  const router = useRouter();
 
   const handleGoogleSignUp = async () => {
     const result = await signIn("google", { callbackUrl: "/" });

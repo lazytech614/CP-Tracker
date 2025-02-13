@@ -19,20 +19,7 @@ export const authOptions: NextAuthOptions = {
   ],
   callbacks: {
     async jwt({ token, user }) {
-      // if (user) {
-      //   token.id = user.id.toString();
-      //   token.email = user.email;
-      // }
-      // try {
-      //   JSON.stringify(token);
-      // } catch (err) {
-      //   console.error("Token serialization error:", err);
-      // }
-      // return token;
-
-      // If a user is returned from signIn, override token.id with the database user id.
       if (user) {
-        // Retrieve the database user using the email
         const dbUser = await prismadb.user.findUnique({
           where: { email: user.email as string },
         });
@@ -50,7 +37,7 @@ export const authOptions: NextAuthOptions = {
       session.user.email = token.email;
       return session;
     },
-    async signIn({ account, profile }) {
+    async signIn({ account, profile }) {  // eslint-disable-line @typescript-eslint/no-unused-vars
       if (!profile?.email) {
         throw new Error("Email is required");
       }

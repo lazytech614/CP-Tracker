@@ -2,7 +2,6 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 
 export default function HeroSection() {
     const { data: session } = useSession();

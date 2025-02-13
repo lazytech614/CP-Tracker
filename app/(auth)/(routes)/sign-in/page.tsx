@@ -17,6 +17,8 @@ import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 
 export default function SignInPage() {
+  const router = useRouter();
+  
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -27,7 +29,6 @@ export default function SignInPage() {
     return null;
   }
 
-  const router = useRouter();
 
   const handleGoogleSignIn = async () => {
     const result = await signIn("google", { callbackUrl: "/" });
@@ -75,14 +76,14 @@ export default function SignInPage() {
             <div className="flex flex-col gap-4">
                 <div className="space-y-1 flex flex-col">
                     <span className="text-sm">Email address</span>
-                     <Input type="email" placeholder="example@example.com" />
+                    <Input type="email" placeholder="example@example.com" />
                 </div>
                 <Button
                     variant="outline" 
                     className="bg-foreground text-white dark:bg-gray-800 px-4 py-2 rounded-md mt-4"
                     onClick={() => router.push("/")}
                 >
-                    Sign in
+                  Sign in
                 </Button>
             </div>
         </CardContent>

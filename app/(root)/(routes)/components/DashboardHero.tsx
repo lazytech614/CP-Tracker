@@ -23,8 +23,8 @@ export default function DashboardHero({ username }: DashboardHeroProps) {
       alert("Please enter your LeetCode username.");
       return;
     }
-    // syncLeetCodeData(session.user.id, leetCodeUsername);
   }
+
   return (
     <section className="py-8 text-center">
       <Input
@@ -39,7 +39,7 @@ export default function DashboardHero({ username }: DashboardHeroProps) {
       </Button>
       <h1 className="text-3xl font-bold">Welcome back, {username}!</h1>
       <p className="mt-2 text-gray-600">
-        Here's your competitive programming progress overview.
+        Here&apos;s your competitive programming progress overview.
       </p>
     </section>
   );

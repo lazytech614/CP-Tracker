@@ -1,11 +1,10 @@
 "use client"
 
 import React from 'react'
-
-// import LogoutButton from './LogoutButton'
 import { signOut, useSession } from 'next-auth/react'
-import { ModeToggle } from './ModeToggle'
 import Image from 'next/image'
+
+import { ModeToggle } from './ModeToggle'
 import { Button } from './ui/button'
 
 const NavbarActions = () => {
@@ -23,15 +22,15 @@ const NavbarActions = () => {
           </Button> 
           : 
           null}
-        {session && (
+        {session?.user?.image ? (
           <Image
-            src={`${session.user?.image!}`}
-            alt={session.user.name as string}
+            src={session.user.image}
+            alt={session.user.name || "User"}
             width={40}
             height={40}
-            className='rounded-full'
+            className="rounded-full"
           />
-        )}
+        ) : null}
     </div>
   )
 }

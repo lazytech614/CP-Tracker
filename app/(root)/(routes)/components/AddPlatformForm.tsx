@@ -20,7 +20,6 @@ import {
     SelectValue 
 } from "@/components/ui/select";
 import toast from "react-hot-toast";
-import Container from "@/components/ui/container";
 
 interface AddPlatformFormProps {
   onAddPlatform: (platform: string, handle: string, platformEmail: string) => void;

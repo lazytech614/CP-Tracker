@@ -4,7 +4,6 @@ import React from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { usePathname } from 'next/navigation'
-import { useSession } from 'next-auth/react'
 import { MenuIcon } from 'lucide-react'
 
 import { 
@@ -15,8 +14,6 @@ import {
 
 const MainNav = () => {
   const pathname = usePathname()
-
-  const { data: session, status } = useSession()
 
   const routes = [
     {

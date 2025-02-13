@@ -48,7 +48,7 @@ export default function TestimonialSlider() {
             <h3 className="text-xl font-bold">What Our Users Say</h3>
           </CardHeader>
           <CardContent className="text-center">
-            <p className="text-gray-700 italic">"{feedback}"</p>
+          <p className="text-gray-700 italic">&quot;{feedback}&quot;</p>
             <p className="mt-2 font-medium">- {name}</p>
           </CardContent>
           <CardFooter className="flex justify-center space-x-4">
