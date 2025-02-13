@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { syncLeetCodeData } from "@/lib/syncLeetCodeData";
+// import { syncLeetCodeData } from "@/lib/syncLeetCodeData";
 
 interface DashboardHeroProps {
   username: string | null | undefined;
@@ -23,7 +23,7 @@ export default function DashboardHero({ username }: DashboardHeroProps) {
       alert("Please enter your LeetCode username.");
       return;
     }
-    syncLeetCodeData(session.user.id, leetCodeUsername);
+    // syncLeetCodeData(session.user.id, leetCodeUsername);
   }
   return (
     <section className="py-8 text-center">

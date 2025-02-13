@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import toast, { Toaster } from 'react-hot-toast';
 
 import "./globals.css";
 import Navbar from "@/components/Navbar";
@@ -39,6 +40,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
+              <Toaster />
               <Navbar />
               {children}
               <Footer />
